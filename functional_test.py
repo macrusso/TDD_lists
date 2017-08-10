@@ -12,6 +12,11 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_general(self):
 
         # There's a brand new online TO DO app which can be accessed via
@@ -33,24 +38,20 @@ class NewVisitorTest(unittest.TestCase):
         input_box.send_keys('Learn Python')
 
         # When one hits enter, the page updates and now the page lists
-        # '1: Learn python' as an item on the list
+        # '1: Learn Python' as an item on the list
         input_box.send_keys(Keys.ENTER)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Learn Python', [row.text for row in rows])
+        self.check_for_row_in_list_table('1: Learn Python')
 
         # There is still a text box to enter another item
-        # One enters 'Use python to make a web app'
+        # One enters 'Use Python to make a web app'
         input_box = self.browser.find_element_by_id('id_new_item')
-        input_box.send_keys('Use python to make a web app')
+        input_box.send_keys('Use Python to make a web app')
         input_box.send_keys(Keys.ENTER)
 
         # The page updates again and there're two items now
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Learn Python', [row.text for row in rows])
-        self.assertIn('2: Use python to make a web app', [row.text for row in rows])
+        self.check_for_row_in_list_table('1: Learn Python')
+        self.check_for_row_in_list_table('2: Use Python to make a web app')
 
         # To remember the list, the page generates an unique URL for an user
         self.fail('Finish the test!')
