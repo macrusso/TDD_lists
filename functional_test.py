@@ -38,18 +38,22 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Learn Python' for row in rows)
-        )
+        self.assertIn('1: Learn Python', [row.text for row in rows])
 
         # There is still a text box to enter another item
         # One enters 'Use python to make a web app'
-        self.fail('Finish the test!')
+        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box.send_keys('Use python to make a web app')
+        input_box.send_keys(Keys.ENTER)
 
         # The page updates again and there're two items now
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Learn Python', [row.text for row in rows])
+        self.assertIn('2: Use python to make a web app', [row.text for row in rows])
 
         # To remember the list, the page generates an unique URL for an user
-
+        self.fail('Finish the test!')
         # Once revisited that URL, one realises its list is still there
 
         # One closes the window
