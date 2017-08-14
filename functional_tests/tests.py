@@ -1,9 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+from django.test import LiveServerTestCase
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -20,7 +20,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_general(self):
 
         # There's a brand new online TO DO app which can be accessed via
-        self.browser.get('http://127.0.0.1:8000/')
+        self.browser.get(self.live_server_url)
 
         # Page title and header mention to do list
         self.assertIn('To-Do', self.browser.title)
@@ -58,8 +58,3 @@ class NewVisitorTest(unittest.TestCase):
         # Once revisited that URL, one realises its list is still there
 
         # One closes the window
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
-
-
