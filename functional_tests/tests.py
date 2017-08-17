@@ -61,7 +61,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # New user visits the page and there is no data form previous user
         self.browser.get(self.live_server_url)
-        page_text = self.browser.find_elements_by_id('body')
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Learn Python', page_text)
         self.assertNotIn('Use Python to make a web app', page_text)
 
@@ -76,7 +76,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotEqual(new_user_list_url, user_list_url)
 
         # Double check for previous user data
-        page_text = self.browser.find_elements_by_tag_name('body').text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Learn Python', page_text)
         self.assertIn('Buy milk', page_text)
 
