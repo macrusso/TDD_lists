@@ -31,7 +31,7 @@ class NewVisitorTest(LiveServerTestCase):
         input_box = self.browser.find_element_by_id('id_new_item')
         self.assertEqual(
             input_box.get_attribute('placeholder'),
-            'Enter a to-do item'
+            'Enter an item'
         )
 
         # One types 'Learn python' into a text box
@@ -80,9 +80,26 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertNotIn('Learn Python', page_text)
         self.assertIn('Buy milk', page_text)
 
-        # New user closes page as well
-        self.fail('Finish the test!')
+    def test_layout_and_styling(self):
+        # User goes to the home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
 
+        # The input box is in the centre
+        input_box = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            input_box.location['x'] + input_box.size['width'] / 2,
+            512,
+            delta=5
+        )
+
+        # User starts a new list and sees the input is centred as well
+        input_box = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            input_box.location['x'] + input_box.size['width'] / 2,
+            512,
+            delta=5
+        )
 
 
 
