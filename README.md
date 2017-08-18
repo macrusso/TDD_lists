@@ -1,4 +1,4 @@
-# django-social
+# TDD lists
 TO DO list app in Django
 devloped with test driven develompnet (TDD) process for learning purposes
 
