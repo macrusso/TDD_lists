@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from django.test import LiveServerTestCase
 
 
-
 class NewVisitorTest(LiveServerTestCase):
 
     @classmethod
