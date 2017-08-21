@@ -1,9 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.test import LiveServerTestCase
+import sys
 
 
 class NewVisitorTest(LiveServerTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        for arg in sys.argv:
+            if 'liveserver' in arg:
+                cls.server_url = 'http://' + arg.split('=')[1]
+                return
+        super().setUpClass()
+        cls.server_url = cls.live_server_url
+
+    @classmethod
+    def tearDownClass(cls):
+        if cls.server_url == cls.live_server_url:
+            super().tearDownClass()
 
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -20,12 +35,12 @@ class NewVisitorTest(LiveServerTestCase):
     def test_general(self):
 
         # There's a brand new online TO DO app which can be accessed via
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
 
         # Page title and header mention to do list
         self.assertIn('To-Do', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('To-Do', header_text)
+        self.assertIn('to-do', header_text)
 
         # One can add items straightaway
         input_box = self.browser.find_element_by_id('id_new_item')
@@ -60,7 +75,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser = webdriver.Chrome()
 
         # New user visits the page and there is no data form previous user
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Learn Python', page_text)
         self.assertNotIn('Use Python to make a web app', page_text)
@@ -82,7 +97,7 @@ class NewVisitorTest(LiveServerTestCase):
 
     def test_layout_and_styling(self):
         # User goes to the home page
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
         self.browser.set_window_size(1024, 768)
 
         # The input box is in the centre
