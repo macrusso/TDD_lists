@@ -1,7 +1,8 @@
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.test import LiveServerTestCase
-import sys
+
 
 
 class NewVisitorTest(LiveServerTestCase):
