@@ -16,7 +16,7 @@ class NewVisitorTest(FunctionalTest):
         self.assertIn('to-do', header_text)
 
         # One can add items straightaway
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         self.assertEqual(
             input_box.get_attribute('placeholder'),
             'Enter an item'
@@ -34,7 +34,7 @@ class NewVisitorTest(FunctionalTest):
 
         # There is still a text box to enter another item
         # One enters 'Use Python to make a web app'
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         input_box.send_keys('Use Python to make a web app')
         input_box.send_keys(Keys.ENTER)
 
@@ -54,7 +54,7 @@ class NewVisitorTest(FunctionalTest):
         self.assertNotIn('Use Python to make a web app', page_text)
 
         # New user starts a new list by entering a new item
-        input_box = self.browser.find_element_by_id('id_new_item')
+        input_box = self.get_item_input_box()
         input_box.send_keys('Buy milk')
         input_box.send_keys(Keys.ENTER)
 
