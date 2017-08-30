@@ -1,6 +1,6 @@
 from django.test import TestCase
 from lists.models import Item, List
-from lists.forms import ItemForm, EMPTY_LIST_ERROR, ExistingListItemForm
+from lists.forms import ItemForm, EMPTY_ITEM_ERROR, ExistingListItemForm
 from django.utils.html import escape
 from unittest import skip
 
@@ -39,7 +39,7 @@ class ListViewTest(TestCase):
 
     def test_for_invalid_input_shows_error_on_page(self):
         response = self.post_invalid_input()
-        self.assertContains(response, escape(EMPTY_LIST_ERROR))
+        self.assertContains(response, escape(EMPTY_ITEM_ERROR))
 
     @skip
     def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
@@ -135,7 +135,7 @@ class NewListTest(TestCase):
 
     def test_validation_errors_are_shown_on_home_page(self):
         response = self.client.post('/lists/new', data={'text': ''})
-        self.assertContains(response, escape(EMPTY_LIST_ERROR))
+        self.assertContains(response, escape(EMPTY_ITEM_ERROR))
 
     def test_for_invalid_input_passes_form_to_template(self):
         response = self.client.post('/lists/new', data={'text': ''})

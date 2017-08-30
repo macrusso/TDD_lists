@@ -1,5 +1,5 @@
 from django.test import TestCase
-from lists.forms import ItemForm, EMPTY_LIST_ERROR, DUPLICATE_ITEM_ERROR, ExistingListItemForm
+from lists.forms import ItemForm, EMPTY_ITEM_ERROR, DUPLICATE_ITEM_ERROR, ExistingListItemForm
 from lists.models import Item, List
 
 
@@ -8,7 +8,7 @@ class ItemFormTest(TestCase):
     def test_form_validation_for_blank_items(self):
         form = ItemForm(data={'text': ''})
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['text'], [EMPTY_LIST_ERROR])
+        self.assertEqual(form.errors['text'], [EMPTY_ITEM_ERROR])
 
     def test_form_item_input_has_placeholder_and_css_classes(self):
         form = ItemForm()
@@ -35,7 +35,7 @@ class ExistingListItemFormTest(TestCase):
         list_ = List.objects.create()
         form = ExistingListItemForm(for_list=list_, data={'text': ''})
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['text'], [EMPTY_LIST_ERROR])
+        self.assertEqual(form.errors['text'], [EMPTY_ITEM_ERROR])
 
     def test_form_validation_for_duplicate_items(self):
         list_ = List.objects.create()
