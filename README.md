@@ -9,9 +9,10 @@ Testes:
 - unit test
 
 
-
 Technology used:
 - Django
 - Selenium
+- JavaScript
+- QUnit 
 
 
