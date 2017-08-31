@@ -1,8 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 
-# Create your models here.
-
 
 class List(models.Model):
 
@@ -20,3 +18,4 @@ class Item(models.Model):
 
     def __str__(self):
         return self.text
+

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>To-Do lists</title>
@@ -15,33 +16,88 @@
     <link href="/static/base.css" rel="stylesheet" media="screen">
 </head>
 
-.
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 jumbotron">
-                <div class="text-center">
-                    <h1>{% block header_text %}{% endblock %}</h1>
-                    <form method="POST" action="{% block form_action %}{% endblock %}">
-                        {{ form.text }}
-                        {% csrf_token %}
-                        {% if form.errors %}
-                            <div class="form-group has-error">
-                                <span class="help-block">{{ form.text.errors }}</span>
-                            </div>
-                        {% endif %}
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                {% block table %}
-                {% endblock %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 jumbotron">
+            <div class="text-center">
+                <h1>{% block header_text %}{% endblock %}</h1>
+                <form method="POST" action="{% block form_action %}{% endblock %}">
+                    {{ form.text }}
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="form-group has-error">
+                            <div class="help-block">{{ form.text.errors }}</div>
+                        </div>
+                    {% endif %}
+                </form>
             </div>
         </div>
     </div>
-</body>
 
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% block table %}
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="/static/list.js"></script>
+
+</body>
 </html>
 
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>To-Do lists</title>#}
+{#    <!-- Latest compiled and minified CSS -->#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"#}
+{#          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+{#    <!-- Optional theme -->#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"#}
+{#          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">#}
+{#    <!-- Latest compiled and minified JavaScript -->#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"#}
+{#            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
+{#    <link href="/static/base.css" rel="stylesheet" media="screen">#}
+{#</head>#}
+{##}
+{##}
+{#<body>#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-6 col-md-offset-3 jumbotron">#}
+{#                <div class="text-center">#}
+{#                    <h1>{% block header_text %}{% endblock %}</h1>#}
+{#                    <form method="POST" action="{% block form_action %}{% endblock %}">#}
+{#                        {{ form.text }}#}
+{#                        {% csrf_token %}#}
+{#                        {% if form.errors %}#}
+{#                            <div class="form-group has-error">#}
+{#                                <sbase.htmlpan class="help-block">{{ form.text.errors }}</sbase.htmlpan>#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="col-md-6 col-md-offset-3">#}
+{#                {% block table %}#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <script src="http://code.jquery.com/jquery.min.js"></script>#}
+{#    <script src="/static/list.js"></script>#}
+{#</body>#}
+{##}
+{#</html>#}
+{##}
