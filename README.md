@@ -1,10 +1,11 @@
 # TDD lists
 TO DO list app in Django
-devloped with test driven develompnet (TDD) process for learning purposes
+developed with test driven development (TDD) process for learning purposes
+
+It's a minimum viable app with TDD. made just te get myself familiar with TDD. Plenty of features missing such as post or list removal, different users accounts and many more. That won't be added.
 
 
-
-Testes:
+Testing methods:
 - functional test 
 - unit test
 
@@ -14,5 +15,8 @@ Technology used:
 - Selenium
 - JavaScript
 - QUnit 
+
+Deployed with pythonanywhere.com:
+[TO-DO](http://macrusso2.pythonanywhere.com/)
 
 

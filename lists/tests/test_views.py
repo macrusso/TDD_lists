@@ -105,7 +105,6 @@ class ListViewTest(TestCase):
             '/lists/%d/' % (correct_list.id,),
             data={'text': 'A new item for an existing list'}
         )
-
         self.assertRedirects(response, '/lists/%d/' % (correct_list.id, ))
 
 
