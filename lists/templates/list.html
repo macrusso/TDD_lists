@@ -5,6 +5,10 @@
 {% block form_action %}{% url 'view_list' list.id %}{% endblock %}
 
 {% block table %}
+    <form method="POST" action="{% url 'delete_list' list.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete list</button>
+    </form>
     <table id="id_list_table" class="table">
         {% for item in list.item_set.all %}
             <tr>
