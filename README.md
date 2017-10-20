@@ -19,4 +19,10 @@ Technology used:
 Deployed with pythonanywhere.com:
 [TO-DO](http://macrusso2.pythonanywhere.com/)
 
+# Installing dependencies
 
+To install project dependencies you can run the following command at project root:
+
+```
+pip install -r requirements.txt
+```
